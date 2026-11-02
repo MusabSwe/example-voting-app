@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+
+metadata:
+  name: redis
+  labels:
+    app: redis
+spec:
+  type: ClusterIP # if not specified the default will be ClusterIP
+  ports:
+    - name: redis-svc
+      targetPort: 6379 # pod port
+      port: 6379 # svc port
+  selector: # mean which request to svc port (targetPort) should forward traffic to any pod with label app: redis
+    app: redis
+  
